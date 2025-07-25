@@ -1,0 +1,6 @@
+# secret keys
+.env
+
+#unwanted files
+venv/
+__pycache__/
