@@ -89,18 +89,15 @@ async def ask_query(query: str = Form(...)):
     model = genai.GenerativeModel("models/gemini-1.5-flash")
     response = model.generate_content(prompt)
 
-    # Better formatting function
     formatted_response = format_response_better(response.text)
 
     return {"answer": formatted_response}
 
 def format_response_better(text: str) -> str:
     """Format response for better frontend display"""
-    # Remove markdown symbols
     text = text.replace("**", "")
     text = text.replace("*", "")
     
-    # Split into lines
     lines = text.strip().split('\n')
     formatted_lines = []
     
@@ -108,19 +105,16 @@ def format_response_better(text: str) -> str:
         line = line.strip()
         
         if line:
-            # Convert to bullet points
             if line.startswith("- "):
                 line = "• " + line[2:]
             elif line.startswith("• "):
-                pass  # Already formatted
+                pass 
             
             formatted_lines.append(line)
     
-    # Add spacing before headings (except first one)
     final_lines = []
     for i, line in enumerate(formatted_lines):
         if line.startswith("HEADING:") and i > 0:
-            # Add one empty line before headings (except first)
             final_lines.append("")
         final_lines.append(line)
     

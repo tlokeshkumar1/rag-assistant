@@ -56,7 +56,6 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ files, uploadedFil
     } catch (error) {
       console.error('Error calling RAG API:', error);
       
-      // Fallback response if API fails
       if (uploadedFiles.length > 0) {
         return `I apologize, but I'm having trouble connecting to the analysis service. However, I can see you've uploaded ${uploadedFiles.length} file(s): ${uploadedFiles.join(', ')}. Please try your question again in a moment.`;
       } else {

@@ -95,7 +95,6 @@ export const FileUpload: React.FC<FileUploadProps> = ({
     setError('');
     
     try {
-      // Only upload files that haven't been uploaded yet
       const filesToUpload = files.filter(file => !uploadedFiles.includes(file.name));
       
       if (filesToUpload.length === 0) {
