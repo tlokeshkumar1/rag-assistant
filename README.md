@@ -139,6 +139,25 @@ rag-assistant/
 2. Wait for processing to complete
 3. Ask questions about your documents in the chat interface
 4. Receive contextually relevant responses based on document content
+
+## Application Screenshots
+
+### File Upload Interface
+![File Upload Interface](backend/static/Screenshot%202025-07-25%20162912.png)
+*Clean and intuitive file upload interface with drag-and-drop functionality*
+
+### Document Processing
+![Document Processing](backend/static/Screenshot%202025-07-25%20163345.png)
+*Real-time feedback during document processing and embedding generation*
+
+### Chat Interface - Query Example
+![Chat Interface Query](backend/static/Screenshot%202025-07-25%20164109.png)
+*Interactive chat interface showing user queries and AI responses*
+
+### Chat Interface - Response Example
+![Chat Interface Response](backend/static/Screenshot%202025-07-25%20164120.png)
+*Detailed AI responses with proper formatting and contextual information*
+
 ## Key Features Explained
 
 ### Document Processing Pipeline
