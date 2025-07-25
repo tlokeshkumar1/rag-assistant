@@ -46,9 +46,9 @@ function App() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 h-[calc(100vh-8rem)]">
           
           {/* File Upload Section */}
-          <div className="lg:col-span-1 space-y-6">
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-              <div className="mb-6">
+          <div className="lg:col-span-1 space-y-6 h-full overflow-y-auto">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex flex-col">
+              <div className="mb-6 flex-shrink-0">
                 <h2 className="text-lg font-semibold text-gray-900 mb-2">
                   Upload Documents
                 </h2>
@@ -57,12 +57,14 @@ function App() {
                 </p>
               </div>
               
-              <FileUpload 
-                files={files} 
-                onFilesChange={setFiles}
-                onUploadComplete={handleUploadComplete}
-                maxFiles={2}
-              />
+              <div className="flex-1 min-h-0">
+                <FileUpload 
+                  files={files} 
+                  onFilesChange={setFiles}
+                  onUploadComplete={handleUploadComplete}
+                  maxFiles={2}
+                />
+              </div>
             </div>
 
             {/* Info Card */}

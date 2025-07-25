@@ -157,7 +157,27 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ files, uploadedFil
                   ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white'
                   : 'bg-gray-100 text-gray-900'
               }`}>
-                <p className="text-sm leading-relaxed">{message.content}</p>
+                <div className={`whitespace-pre-wrap ${
+                  message.type === 'user' ? '' : 'bg-gray-50 rounded-lg p-4'
+                }`}>
+                  {message.type === 'assistant' ? (
+                    <div 
+                      dangerouslySetInnerHTML={{
+                        __html: message.content
+                          .split('\n')
+                          .map(line => {
+                            if (line.startsWith('HEADING:')) {
+                              return `<div class="font-bold text-gray-900 mb-0 mt-2 first:mt-0">${line.replace('HEADING:', '').trim()}</div>`;
+                            }
+                            return line;
+                          })
+                          .join('<br/>')
+                      }}
+                    />
+                  ) : (
+                    message.content
+                  )}
+                </div>
               </div>
               <p className={`text-xs text-gray-500 mt-1 ${
                 message.type === 'user' ? 'text-right' : 'text-left'

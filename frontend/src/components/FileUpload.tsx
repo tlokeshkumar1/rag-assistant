@@ -132,9 +132,9 @@ export const FileUpload: React.FC<FileUploadProps> = ({
   };
 
   return (
-    <div className="w-full space-y-4">
+    <div className="w-full h-full flex flex-col space-y-4">
       <div
-        className={`relative border-2 border-dashed rounded-xl p-8 text-center transition-all duration-200 ${
+        className={`relative border-2 border-dashed rounded-xl p-8 text-center transition-all duration-200 flex-shrink-0 ${
           dragActive
             ? 'border-emerald-500 bg-emerald-50'
             : files.length >= maxFiles
@@ -186,8 +186,8 @@ export const FileUpload: React.FC<FileUploadProps> = ({
       )}
 
       {files.length > 0 && (
-        <div className="space-y-2">
-          <div className="flex items-center justify-between">
+        <div className="flex-1 min-h-0 overflow-y-auto space-y-2">
+          <div className="flex items-center justify-between flex-shrink-0">
             <h3 className="text-sm font-medium text-gray-700">Selected Files</h3>
             <button
               onClick={uploadFiles}
@@ -212,41 +212,43 @@ export const FileUpload: React.FC<FileUploadProps> = ({
               )}
             </button>
           </div>
-          {files.map((file, index) => (
-            <div
-              key={index}
-              className="flex items-center justify-between p-3 bg-white border border-gray-200 rounded-lg shadow-sm"
-            >
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center">
-                  {uploadedFiles.includes(file.name) ? (
-                    <CheckCircle className="w-4 h-4 text-green-600" />
-                  ) : (
-                    <FileText className="w-4 h-4 text-emerald-600" />
-                  )}
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-gray-900 truncate max-w-xs">
-                    {file.name}
-                  </p>
-                  <p className="text-xs text-gray-500">
-                    {formatFileSize(file.size)}
-                    {uploadedFiles.includes(file.name) && (
-                      <span className="ml-2 text-green-600 font-medium">✓ Uploaded</span>
-                    )}
-                  </p>
-                </div>
-              </div>
-              
-              <button
-                onClick={() => removeFile(index)}
-                disabled={uploading}
-                className="p-1 text-gray-400 hover:text-red-500 transition-colors disabled:opacity-50"
+          <div className="space-y-2">
+            {files.map((file, index) => (
+              <div
+                key={index}
+                className="flex items-center justify-between p-3 bg-white border border-gray-200 rounded-lg shadow-sm"
               >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-          ))}
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center">
+                    {uploadedFiles.includes(file.name) ? (
+                      <CheckCircle className="w-4 h-4 text-green-600" />
+                    ) : (
+                      <FileText className="w-4 h-4 text-emerald-600" />
+                    )}
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-gray-900 truncate max-w-xs">
+                      {file.name}
+                    </p>
+                    <p className="text-xs text-gray-500">
+                      {formatFileSize(file.size)}
+                      {uploadedFiles.includes(file.name) && (
+                        <span className="ml-2 text-green-600 font-medium">✓ Uploaded</span>
+                      )}
+                    </p>
+                  </div>
+                </div>
+                
+                <button
+                  onClick={() => removeFile(index)}
+                  disabled={uploading}
+                  className="p-1 text-gray-400 hover:text-red-500 transition-colors disabled:opacity-50"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </div>
